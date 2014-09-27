@@ -29,8 +29,11 @@ game.load.spritesheet('frog', 'assets/frog.png', 39.7, 28);
 
 function create() {
 
-	// enabling Arcade Physics system
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+			// enabling Arcade Physics system
+			game.physics.startSystem(Phaser.Physics.ARCADE);
+	
+			// create background
+			game.add.sprite(0, 0, 'background');
 	
 			// contains ground and ledges, enabling physics to the group
 			platforms = game.add.group();
