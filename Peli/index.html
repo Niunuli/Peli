@@ -21,7 +21,7 @@
 			game.load.image('background', 'assets/frontpage.jpg');
 			game.load.image('ground', 'assets/platform.png');
 			game.load.image('diamond', 'assets/diamond.png');
-			game.load.spritesheet('frog', 'assets/frog.png', 39.7, 28);
+			game.load.spritesheet('frog', 'assets/frog_breathe.png', 38, 26);
 			
 		}
 		
@@ -58,7 +58,7 @@
 			ledge.body.immovable = true;
 			
 			// player and its settings
-			player = game.add.sprite(39.7, game.world.height - 150, 'frog');
+			player = game.add.sprite(38, game.world.height - 150, 'frog');
 			
 			// enabling physics on the player
 			game.physics.arcade.enable(player);
@@ -69,7 +69,7 @@
 			player.body.collideWorldBounds = true;
 			
 			// breathing player
-			player.animations.add('still', [0, 1, 2, 3, 4], 10, true);
+			player.animations.add('still', [0, 1, 2, 3, 4, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6], 10, true);
 			
 			// moving left and right
 			//player.animations.add('left', [0, 1], 10, true);
