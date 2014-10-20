@@ -18,13 +18,15 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
 game.load.image('background', 'assets/background.jpg');
-game.load.image('ground', 'assets/platform.png');
+game.load.image('ground', 'assets/ground.jpg');
+game.load.image('platform', 'assets/platform.jpg');
 game.load.image('diamond', 'assets/diamond.png');
 game.load.image('stone', 'assets/stone.png');//---------------------------------LISÄTTY---------------------
 game.load.spritesheet('frog', 'assets/frogi.png', 38, 40);
 }
 
 var player;
+var ground;
 var platforms;
 var cursors;
 
@@ -48,16 +50,16 @@ platforms.enableBody = true;
 var ground = platforms.create(0, game.world.height - 64, 'ground');
 
 // scale it to fit the width of the game
-ground.scale.setTo(2, 2);
+ground.scale.setTo(1, 1);
 
 // stops it from falling when you jump on it
 ground.body.immovable = true;
 
 // create two ledges
-var ledge = platforms.create(400, 400, 'ground');
+var ledge = platforms.create(400, 400, 'platform');
 ledge.body.immovable = true;
 
-ledge = platforms.create(-150, 250, 'ground');
+ledge = platforms.create(-150, 250, 'platform');
 ledge.body.immovable = true;
 
 // player and its settings
