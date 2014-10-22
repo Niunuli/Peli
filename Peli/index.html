@@ -21,7 +21,7 @@ game.load.image('background', 'assets/background.jpg');
 game.load.image('ground', 'assets/ground.jpg');
 game.load.image('platform', 'assets/platform.jpg');
 game.load.image('diamond', 'assets/diamond.png');
-game.load.image('stone', 'assets/stone.png');//---------------------------------LISÄTTY---------------------
+game.load.image('stone', 'assets/stone.png');
 game.load.spritesheet('frog', 'assets/frogi.png', 38, 40);
 }
 
@@ -134,7 +134,7 @@ player.animations.play('still');
 // Allow the player to jump if they are touching the ground.
 if (cursors.up.isDown && player.body.touching.down)
 {
-player.body.velocity.y = -350;
+player.body.velocity.y = -400;
 }
 }
 
