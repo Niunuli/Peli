@@ -20,8 +20,7 @@ function preload() {
 game.load.image('background', 'assets/background.jpg');
 game.load.image('ground', 'assets/ground.jpg');
 game.load.image('platform', 'assets/platform.jpg');
-game.load.image('diamond', 'assets/diamond.png');
-game.load.image('stone', 'assets/stone.png');
+game.load.spritesheet('fly', 'assets/fly.png');
 game.load.spritesheet('frog', 'assets/frogi.png', 38, 40);
 }
 
@@ -62,8 +61,9 @@ ledge.body.immovable = true;
 ledge = platforms.create(-150, 250, 'platform');
 ledge.body.immovable = true;
 
-// player and its settings
+// player and collectible and its settings
 player = game.add.sprite(38, game.world.height - 150, 'frog');
+fly = game.add.sprite(38, game.world.height - 150, 'fly');
 
 // enabling physics on the player
 game.physics.arcade.enable(player);
