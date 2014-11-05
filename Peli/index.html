@@ -1,18 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-		<meta charset="UTF-8" />
-		<title>Phaser - Making your first game, part 1</title>
-		<script type="text/javascript" src="js/phaser.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	
+	<title>Frog Adventures Main Menu</title>
+	
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/frogi_frontpage_edgePreload.js"></script>
+	<script type="text/javascript" src="js/boot.js"></script>
+	<script type="text/javascript" src="js/preload.js"></script>
+	<script type="text/javascript" src="js/mainmenu.js"></script>
+	<script type="text/javascript" src="js/level1.js"></script>
+	<script type="text/javascript" src="js/level2.js"></script>
+	<script type="text/javascript" src="js/level3.js"></script>
+	
 	<style type="text/css">
 		body {
 		margin: 0;
 		}
+		.edgeLoad-Frog_game { visibility:hidden; }
 	</style>
 </head>
-<body>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="Frog_game"></div>
 
 <script type="text/javascript">
+
+
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -29,7 +44,7 @@ var ground;
 var platforms;
 var cursors;
 
-var flys;
+var flies;
 var score = 0;
 var scoreText;
 
@@ -80,17 +95,17 @@ player.animations.add('still', [0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 
 player.animations.add('left', [8, 9, 10, 11, 12, 13, 14, 15], 10, true);
 player.animations.add('right', [16, 17, 18, 19, 20, 21, 22, 23], 10, true);
 
-	//  Finally some flys to collect
-    flys = game.add.group();
+	//  Finally some flies to collect
+    flies = game.add.group();
 	
 	//  We will enable physics for any fly that is created in this group
-    flys.enableBody = true;
+    flies.enableBody = true;
 
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++)
     {
-        //  Create a fly inside of the 'flys' group
-        var fly = flys.create(i * 70, 0, 'fly');
+        //  Create a fly inside of the 'flies' group
+        var fly = flies.create(i * 70, 0, 'fly');
 
         //  Let gravity do its thing
         fly.body.gravity.y = 500;
@@ -111,12 +126,12 @@ scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF
 cursors = game.input.keyboard.createCursorKeys();
 }
 function update() {
-	// Collide the player and the flys with the platforms
+	// Collide the player and the flies with the platforms
 	game.physics.arcade.collide(player, platforms);
-	game.physics.arcade.collide(flys, platforms);
+	game.physics.arcade.collide(flies, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectflyfunction
-    game.physics.arcade.overlap(player, flys, collectfly, null, this);
+    game.physics.arcade.overlap(player, flies, collectfly, null, this);
 
 	// Reset the players velocity (movement)
 	player.body.velocity.x = 0;
@@ -155,6 +170,7 @@ function collectfly (player, fly) {
 	//  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
+		
 }
 </script>
 </body>
