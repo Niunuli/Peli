@@ -14,8 +14,14 @@ FrogAdventures.boot.prototype = {
 		// Loading screen will have a white background
 		this.game.stage.backgroundColor = '#fff';
 		
+		// Scaling options
+		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		
+		// Screen size will be set automatically
+		//this.scale.setScreenSize(true);
+		
 		// Have the game centered horizontally
-		//this.scale.pageAlignHorizontally = true;
+		this.scale.pageAlignHorizontally = true;
 		
 		// Physics system for movement
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
