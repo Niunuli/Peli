@@ -17,9 +17,6 @@ FrogAdventures.boot.prototype = {
 		// Scaling options
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		
-		// Screen size will be set automatically
-		//this.scale.setScreenSize(true);
-		
 		// Have the game centered horizontally
 		this.scale.pageAlignHorizontally = true;
 		

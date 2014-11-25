@@ -23,18 +23,18 @@ FrogAdventures.mainmenu.prototype = {
 	
 	actionOnClick: function() {
 	
-		if (button.name == 'start')
-		{
+		//if (this.button.name == 'start')
+		//{
 			this.state.start('level1');
-		}
-		else if (button.name == 'help')
+		/*}
+		else if (this.button.name == 'help')
 		{
 			this.state.start('help');
 		}
-		else if (button.name == 'quit')
+		else if (this.button.name == 'quit')
 		{
-			window.game.close();
-		}
+			this.window.game.close();
+		}*/
 	}
 
 };
