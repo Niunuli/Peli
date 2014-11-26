@@ -1,5 +1,5 @@
 var FrogAdventures = FrogAdventures || {};
-
+score = 0;
 //title screen
 FrogAdventures.level1 = function(){
 
@@ -16,6 +16,7 @@ FrogAdventures.level1 = function(){
 FrogAdventures.level1.prototype = {
 	
 	create: function() {
+	
 		// create background
 		this.game.add.sprite(0, 0, 'background');
 
@@ -44,12 +45,12 @@ FrogAdventures.level1.prototype = {
 		this.fly = this.game.add.sprite(15, 24, 'fly');
 
 		// enabling physics on the player
-		//this.game.physics.arcade.enable(player);
+		this.game.physics.arcade.enable(this.player);
 
 		// player physics properties
-		/*this.player.body.bounce.y = 0.2;
+		this.player.body.bounce.y = 0.2;
 		this.player.body.gravity.y = 300;
-		this.player.body.collideWorldBounds = true;*/
+		this.player.body.collideWorldBounds = true;
 
 		// breathing player
 		this.player.animations.add('still', [0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 5, 7, 7, 7, 7], 10, true);
@@ -92,12 +93,14 @@ FrogAdventures.level1.prototype = {
   
   
 	update: function() {
+		var score = 0;
+	
 		// Collide the player and the flies with the platforms
-		/*this.game.physics.arcade.collide(player, platforms);
-		this.game.physics.arcade.collide(flies, platforms);
+		this.game.physics.arcade.collide(this.player, this.platforms);
+		this.game.physics.arcade.collide(this.flies, this.platforms);
 
 		//  Checks to see if the player overlaps with any of the stars, if he does call the collectflyfunction
-		this.game.physics.arcade.overlap(player, flies, collectfly, null, this);
+		this.game.physics.arcade.overlap(this.player, this.flies, this.collectfly, null, this);
 
 		// Reset the players velocity (movement)
 		this.player.body.velocity.x = 0;
@@ -123,18 +126,18 @@ FrogAdventures.level1.prototype = {
 		if (this.cursors.up.isDown && this.player.body.touching.down)
 		{
 			this.player.body.velocity.y = -400;
-		}*/
+		}
 	},
 	
 	
 	collectfly: function  (player, fly) {
     
 		// Removes the fly from the screen
-		this.fly.kill();
+		fly.kill();
 
 		//  Add and update the score
 		this.score += 10;
-		this.scoreText.text = 'Score: ' + score;
+		this.scoreText.text = 'Score: ' + this.score;
 
 	}
 	

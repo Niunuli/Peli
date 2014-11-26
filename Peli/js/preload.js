@@ -14,7 +14,8 @@ FrogAdventures.preload.prototype = {
 		this.game.load.spritesheet('help', 'assets/help.png', 230, 70);
 		this.game.load.image('frontpage', 'assets/Game_frontpage.jpg');
 		this.game.load.image('background', 'assets/background.jpg');
-		this.game.load.image('ground', 'assets/platform.png');
+		this.game.load.image('ground', 'assets/ground.jpg');
+		this.game.load.image('platform', 'assets/platform.jpg');
 		this.game.load.image('logo', 'assets/logo.png');
 	},
 
