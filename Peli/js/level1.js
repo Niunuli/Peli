@@ -31,18 +31,12 @@ FrogAdventures.level1.prototype = {
 		
 		// Next level door and it's settings
 		this.door = this.game.add.sprite(this.world.width - 20, this.game.world.height - 90, 'door');
-		
 		this.door.anchor.setTo(0.5, 0.5);
 		this.door.alpha = 0;
-		
 		this.door.animations.add('rotate');
 		this.door.animations.play('rotate', 10, true);
-		
-		// tää on tässä väliaikaisesti... eli tää tonne alas siihen kohtaan, missä tarkistetaan ne kärpäset (?).
-		this.game.add.tween(this.door).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
-		
 		this.game.physics.arcade.enable(this.door);
-		
+		this.game.add.tween(this.door).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, false);
 		
 		// Player, fly and their settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
@@ -143,21 +137,21 @@ FrogAdventures.level1.prototype = {
 		this.updateText();
 		
 		// Checks if the fly is the last one if so, opens the door	
-		/*if (this.flies.checkAlive = false)
+		if (this.fly.alive = false)
 		{
-			this.door.animation.play('open');
-			
-			this.game.add.tween(this.door).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
-		}*/
+			this.door.start;
+		}
 
 	},
 	
 	nextlevel: function (player, door) {
 	
-		// Removes the player from the screen and starts a new level
-		if (this.door == 'open') { // tääkään ei nyt varmaan mee näin sen uuden oven kanssa :)
+		// If the door is open, starts a new level
+		if (this.door.isRunning = true)
+		{
 			this.state.start('level2');
 		}
+
 	},
 	
 	updateText: function () {
