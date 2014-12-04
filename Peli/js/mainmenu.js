@@ -29,7 +29,13 @@ FrogAdventures.mainmenu.prototype = {
 		/*}
 		else if (this.button.name == 'help')
 		{
-			this.state.start('help');
+			// function that opens the game instructions modal window
+			
+			jQuery(function ($) {
+				// Load dialog on page load
+				$('#basic-modal-content').modal();
+
+			});
 		}
 		else if (this.button.name == 'quit')
 		{
