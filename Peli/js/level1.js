@@ -10,6 +10,8 @@ FrogAdventures.level1.prototype = {
 	
 	create: function() {
 	
+		this.score = 0;
+		
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -130,18 +132,17 @@ FrogAdventures.level1.prototype = {
 		
 	},
 	
-	collectfly: function  (player, fly, a) {
+	collectfly: function  (player, fly) {
 	
 		// Removes the fly from the screen
 		fly.kill();
-		this.a++;
 
 		// Add and update the score
-		this.score++;
-		this.updateText();
+		this.score += 10;
+		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.a === 5)
+		if (this.score == 110)
 		{
 		}
 
@@ -155,12 +156,6 @@ FrogAdventures.level1.prototype = {
 			this.state.start('level2');
 		}
 
-	},
-	
-	updateText: function () {
-	
-		this.scoreText.text = 'Score: ' + this.score;
-	
 	}
 	
 };

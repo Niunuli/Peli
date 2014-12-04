@@ -35,8 +35,7 @@ FrogAdventures.level1.prototype = {
 		
 		// Next level door and it's settings
 		this.door = this.game.add.sprite(this.world.width - 60, this.game.world.height - 130, 'door');
-		this.door.animations.add('open', [1, 2, 3, 4], 5);
-		this.door.animations.add('closed', [0], 10);
+		this.door.animations.add('open', [0, 1, 2, 3, 4], 10);
 		this.game.physics.arcade.enable(this.door);
 		this.door.body.gravity.y = 300;
 		
@@ -139,9 +138,12 @@ FrogAdventures.level1.prototype = {
 		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.score == 40)
+		if (this.score == 110)
 		{
 			this.door.play('open');
+			this.isPlaying = false;
+			this.isFinished = true;
+
 		}
 
 	},
@@ -149,7 +151,7 @@ FrogAdventures.level1.prototype = {
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.open.isFinished = true)
+		if (this.score == 110)
 		{
 			this.state.start('level2');
 		}
