@@ -2,7 +2,6 @@ var FrogAdventures = FrogAdventures || {};
 
 FrogAdventures.level1 = function(){
 
-	var a = 0;
 
 };
 
@@ -10,6 +9,7 @@ FrogAdventures.level1.prototype = {
 	
 	create: function() {
 	
+		this.score = 0;
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -34,13 +34,11 @@ FrogAdventures.level1.prototype = {
 		this.ledge.body.immovable = true;
 		
 		// Next level door and it's settings
-		this.door = this.game.add.sprite(this.world.width - 20, this.game.world.height - 90, 'door');
-		this.door.anchor.setTo(0.5, 0.5);
-		this.door.alpha = 0;
-		this.door.animations.add('rotate');
-		this.door.animations.play('rotate', 10, true);
+		this.door = this.game.add.sprite(this.world.width - 60, this.game.world.height - 130, 'door');
+		this.door.animations.add('open', [1, 2, 3, 4], 5);
+		this.door.animations.add('closed', [0], 10);
 		this.game.physics.arcade.enable(this.door);
-		this.game.add.tween(this.door).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
+		this.door.body.gravity.y = 300;
 		
 		// Player, fly and their settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
@@ -92,9 +90,10 @@ FrogAdventures.level1.prototype = {
   
 	update: function() {
 	
-		// Collide the player and the flies with the platforms
+		// Collide the player, the flies and the door with the platforms
 		this.game.physics.arcade.collide(this.player, this.platforms);
 		this.game.physics.arcade.collide(this.flies, this.platforms);
+		this.game.physics.arcade.collide(this.door, this.platforms);
 
 		// Checks to see if the player overlaps with any of the flies, if he does call the collectfly function
 		this.game.physics.arcade.overlap(this.player, this.flies, this.collectfly, null, this);
@@ -130,19 +129,19 @@ FrogAdventures.level1.prototype = {
 		
 	},
 	
-	collectfly: function  (player, fly, a) {
+	collectfly: function  (player, fly) {
 	
 		// Removes the fly from the screen
 		fly.kill();
-		this.a++;
 
 		// Add and update the score
-		this.score++;
-		this.updateText();
+		this.score += 10;
+		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.a === 5)
+		if (this.score == 40)
 		{
+			this.door.play('open');
 		}
 
 	},
@@ -150,17 +149,11 @@ FrogAdventures.level1.prototype = {
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.door.isRunning = true)
+		if (this.open.isFinished = true)
 		{
 			this.state.start('level2');
 		}
 
-	},
-	
-	updateText: function () {
-	
-		this.scoreText.text = 'Score: ' + this.score;
-	
 	}
 	
 };
