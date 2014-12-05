@@ -2,6 +2,7 @@ var FrogAdventures = FrogAdventures || {};
 
 FrogAdventures.level1 = function(){
 
+	var a = 0;
 
 };
 
@@ -10,6 +11,7 @@ FrogAdventures.level1.prototype = {
 	create: function() {
 	
 		this.score = 0;
+		
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -34,10 +36,13 @@ FrogAdventures.level1.prototype = {
 		this.ledge.body.immovable = true;
 		
 		// Next level door and it's settings
-		this.door = this.game.add.sprite(this.world.width - 60, this.game.world.height - 130, 'door');
-		this.door.animations.add('open', [0, 1, 2, 3, 4], 10);
+		this.door = this.game.add.sprite(this.world.width - 20, this.game.world.height - 90, 'door');
+		this.door.anchor.setTo(0.5, 0.5);
+		this.door.alpha = 0;
+		this.door.animations.add('rotate');
+		this.door.animations.play('rotate', 10, true);
+		this.game.add.tween(this.door).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true)		
 		this.game.physics.arcade.enable(this.door);
-		this.door.body.gravity.y = 300;
 		
 		// Player, fly and their settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
@@ -89,7 +94,7 @@ FrogAdventures.level1.prototype = {
   
 	update: function() {
 	
-		// Collide the player, the flies and the door with the platforms
+		// Collide the player and the flies with the platforms
 		this.game.physics.arcade.collide(this.player, this.platforms);
 		this.game.physics.arcade.collide(this.flies, this.platforms);
 		this.game.physics.arcade.collide(this.door, this.platforms);
@@ -140,10 +145,6 @@ FrogAdventures.level1.prototype = {
 		// Checks if the fly is the last one if so, opens the door	
 		if (this.score == 110)
 		{
-			this.door.play('open');
-			this.isPlaying = false;
-			this.isFinished = true;
-
 		}
 
 	},

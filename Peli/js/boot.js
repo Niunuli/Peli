@@ -6,7 +6,7 @@ FrogAdventures.boot = function(){};
 FrogAdventures.boot.prototype = {
 	preload: function() {
 		// Assets we'll use in the loading screen
-		this.load.image('logo', 'assets/images/logo.png');
+		this.load.image('logo', 'assets/logo.png');
 	},
 	
 	create: function() {

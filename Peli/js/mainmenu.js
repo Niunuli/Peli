@@ -25,7 +25,7 @@ FrogAdventures.mainmenu.prototype = {
 	
 		//if (this.button.name == 'start')
 		//{
-			this.state.start('level1-2');
+			this.state.start('level3');
 		/*}
 		else if (this.button.name == 'help')
 		{
