@@ -47,10 +47,9 @@ FrogAdventures.level3.prototype = {
 		this.ledge.body.immovable = true;
 
 		// Next level door and it's settings
-		this.door = this.game.add.sprite(this.world.width - 60, this.game.world.height - 130, 'door');
-		this.door.animations.add('open', [0, 1, 2, 3, 4], 10);
+		this.door = this.game.add.sprite(this.world.width - 75, this.game.world.height - 180, 'door');
+		this.door.animations.add('closed', [0], 10);
 		this.game.physics.arcade.enable(this.door);
-		this.door.body.gravity.y = 300;
 		
 		// Player and it's settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
@@ -164,7 +163,13 @@ FrogAdventures.level3.prototype = {
 		// Checks if the fly is the last one if so, opens the door	
 		if (this.a == 11)
 		{
+			this.door.animations.add('open', [1, 2, 3, 4], 10, true);
 			this.door.play('open');
+		}
+		
+		else
+		{
+			this.door.play('closed');
 		}
 
 	},
