@@ -7,6 +7,7 @@ FrogAdventures.level2.prototype = {
 	create: function() {
 	
 		this.score = 0;
+		this.a = 0;
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -57,9 +58,8 @@ FrogAdventures.level2.prototype = {
 		this.game.physics.arcade.enable(this.door);
 		this.door.body.gravity.y = 300;
 		
-		// Player, fly and their settings
+		// Player it's settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
-		this.fly = this.game.add.sprite(15, 24, 'fly');
 
 		// Enabling physics on the player
 		this.game.physics.arcade.enable(this.player);
@@ -156,7 +156,7 @@ FrogAdventures.level2.prototype = {
 		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.score == 110)
+		if (this.a == 11)
 		{
 			this.door.play('open');
 		}

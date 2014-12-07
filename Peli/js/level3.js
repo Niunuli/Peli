@@ -7,6 +7,7 @@ FrogAdventures.level3.prototype = {
 	create: function() {
 	
 		this.score = 0;
+		this.a = 0;
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -24,22 +25,25 @@ FrogAdventures.level3.prototype = {
 		this.ground.body.immovable = true;
 
 		// Create two ledges
-		this.ledge = this.platforms.create(-150, 450, 'platform');
+		this.ledge = this.platforms.create(-100, 450, 'platform');
 		this.ledge.body.immovable = true;
 
-		this.ledge = this.platforms.create(80, 380, 'platform');
+		this.ledge = this.platforms.create(140, 370, 'platform');
 		this.ledge.body.immovable = true;
 		
-		this.ledge = this.platforms.create(180, 240, 'platform');
+		this.ledge = this.platforms.create(50, 250, 'platform');
 		this.ledge.body.immovable = true;
 
 		this.ledge = this.platforms.create(240, 150, 'platform');
 		this.ledge.body.immovable = true;
 
-		this.ledge = this.platforms.create(370, 350, 'platform');
+		this.ledge = this.platforms.create(430, 350, 'platform');
 		this.ledge.body.immovable = true;
 
-		this.ledge = this.platforms.create(490, 200, 'platform');
+		this.ledge = this.platforms.create(520, 200, 'platform');
+		this.ledge.body.immovable = true;
+		
+		this.ledge = this.platforms.create(510, 50, 'platform');
 		this.ledge.body.immovable = true;
 
 		// Next level door and it's settings
@@ -48,16 +52,15 @@ FrogAdventures.level3.prototype = {
 		this.game.physics.arcade.enable(this.door);
 		this.door.body.gravity.y = 300;
 		
-		// Player, fly and their settings
+		// Player and it's settings
 		this.player = this.game.add.sprite(38, this.game.world.height - 150, 'frog');
-		this.fly = this.game.add.sprite(15, 24, 'fly');
 
 		// Enabling physics on the player
 		this.game.physics.arcade.enable(this.player);
 
 		// Player physics properties
 		this.player.body.bounce.y = 0.1;
-		this.player.body.gravity.y = 300;
+		this.player.body.gravity.y = 700;
 		this.player.body.collideWorldBounds = true;
 
 		// Breathing player
@@ -69,10 +72,8 @@ FrogAdventures.level3.prototype = {
 		
 		// Some flies to collect
 		this.flies = this.game.add.group();
-		
 		// We will enable physics for any fly that is created in this group
 		this.flies.enableBody = true;
-		
 		// Here we'll create 11 of them evenly spaced apart
 		for (var i = 0; i < 11; i++)
 		{
@@ -87,7 +88,17 @@ FrogAdventures.level3.prototype = {
 			this.fly.animations.play('still', 10, true);
 
 		}
-			
+		
+		// Group for snakes
+		this.snakes = this.game.add.group();
+		// Enabling physics for any snake that is created in this group
+		this.snakes.enableBody = true;
+		// Create one snake
+		this.snake = this.snakes.create(this.world.width - 600, this.game.world.height - 130, 'snake');
+		// Animation for the snakes
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+
 		// The score
 		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF' });
 			
@@ -103,6 +114,9 @@ FrogAdventures.level3.prototype = {
 		this.game.physics.arcade.collide(this.flies, this.platforms);
 		this.game.physics.arcade.collide(this.door, this.platforms);
 
+		// Check to see if the player overlaps with any of the snakes, if he does call the gameover function
+		this.game.physics.arcade.overlap(this.player, this.snakes, this.gameover, null, this);
+		
 		// Checks to see if the player overlaps with any of the flies, if he does call the collectfly function
 		this.game.physics.arcade.overlap(this.player, this.flies, this.collectfly, null, this);
 
@@ -141,17 +155,25 @@ FrogAdventures.level3.prototype = {
 	
 		// Removes the fly from the screen
 		fly.kill();
+		this.a++;
 
 		// Add and update the score
 		this.score += 10;
 		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.score == 110)
+		if (this.a == 11)
 		{
 			this.door.play('open');
 		}
 
+	},
+	
+	gameover: function (player, snake) {
+		//if (snake.currentFrame >= 1)
+		//{
+			this.state.start('gameover');
+		//}
 	},
 	
 	nextlevel: function (player, door) {
