@@ -25,11 +25,17 @@ FrogAdventures.mainmenu.prototype = {
 	
 		//if (this.button.name == 'start')
 		//{
-			this.state.start('level1-2');
+			this.state.start('level3');
 		/*}
 		else if (this.button.name == 'help')
 		{
-			this.state.start('help');
+			// function that opens the game instructions modal window
+			
+			jQuery(function ($) {
+				// Load dialog on page load
+				$('#basic-modal-content').modal();
+
+			});
 		}
 		else if (this.button.name == 'quit')
 		{

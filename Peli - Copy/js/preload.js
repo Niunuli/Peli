@@ -8,6 +8,7 @@ FrogAdventures.preload.prototype = {
 	preload: function () {
 		// Load game assets
 		this.game.load.spritesheet('fly', 'assets/fly.png', 15, 24);
+		this.game.load.spritesheet('snake', 'assets/snake.png', 88, 60);
 		this.game.load.spritesheet('frog', 'assets/frogi.png', 38, 40);
 		this.game.load.spritesheet('start', 'assets/start.png', 230, 70);
 		this.game.load.spritesheet('quit', 'assets/quit.png', 230, 70);
