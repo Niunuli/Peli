@@ -28,10 +28,10 @@ FrogAdventures.level1.prototype = {
 		this.ground.body.immovable = true;
 
 		// Create two ledges
-		this.ledge = this.platforms.create(300, 450, 'platform');
+		this.ledge = this.platforms.create(400, 400, 'platform');
 		this.ledge.body.immovable = true;
 
-		this.ledge = this.platforms.create(-140, 400, 'platform');
+		this.ledge = this.platforms.create(-150, 250, 'platform');
 		this.ledge.body.immovable = true;
 		
 		// Next level door and it's settings
@@ -48,7 +48,7 @@ FrogAdventures.level1.prototype = {
 
 		// Player physics properties
 		this.player.body.bounce.y = 0.1;
-		this.player.body.gravity.y = 700;
+		this.player.body.gravity.y = 300;
 		this.player.body.collideWorldBounds = true;
 
 		// Breathing player
