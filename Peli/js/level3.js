@@ -36,6 +36,9 @@ FrogAdventures.level3.prototype = {
 
 		this.ledge = this.platforms.create(240, 150, 'platform');
 		this.ledge.body.immovable = true;
+		
+		this.ledge = this.platforms.create(-80, 150, 'platform');
+		this.ledge.body.immovable = true;
 
 		this.ledge = this.platforms.create(430, 350, 'platform');
 		this.ledge.body.immovable = true;
@@ -74,14 +77,34 @@ FrogAdventures.level3.prototype = {
 		// We will enable physics for any fly that is created in this group
 		this.flies.enableBody = true;
 		// Here we'll create 11 of them evenly spaced apart
-		for (var i = 0; i < 11; i++)
+		for (var i = 0; i < 12; i++)
 		{
 			// Create a fly inside of the 'flies' group
 			this.fly = this.flies.create(i * 70, 0, 'fly');
-
 			// Let gravity do its thing
 			this.fly.body.gravity.y = 300;
-			
+			// Standing fly
+			this.fly.animations.add('still');
+			this.fly.animations.play('still', 10, true);
+
+		}
+		for (var i = 0; i < 12; i++)
+		{
+			// Create a fly inside of the 'flies' group
+			this.fly = this.flies.create(i * 80, 160, 'fly');
+			// Let gravity do its thing
+			this.fly.body.gravity.y = 300;
+			// Standing fly
+			this.fly.animations.add('still');
+			this.fly.animations.play('still', 10, true);
+
+		}
+		for (var i = 0; i < 12; i++)
+		{
+			// Create a fly inside of the 'flies' group
+			this.fly = this.flies.create(i * 60, 260, 'fly');
+			// Let gravity do its thing
+			this.fly.body.gravity.y = 300;
 			// Standing fly
 			this.fly.animations.add('still');
 			this.fly.animations.play('still', 10, true);
@@ -93,8 +116,16 @@ FrogAdventures.level3.prototype = {
 		// Enabling physics for any snake that is created in this group
 		this.snakes.enableBody = true;
 		// Create one snake
-		this.snake = this.snakes.create(this.world.width - 600, this.game.world.height - 130, 'snake');
+		this.snake = this.snakes.create(this.world.width - 310, this.game.world.height - 520, 'snake');
 		// Animation for the snakes
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+
+		this.snake = this.snakes.create(this.world.width - 610, this.game.world.height - 200, 'snake');
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+
+		this.snake = this.snakes.create(this.world.width - 680, this.game.world.height - 320, 'snake');
 		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
 		this.snake.animations.play('move', 10, true);
 
@@ -161,12 +192,11 @@ FrogAdventures.level3.prototype = {
 		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.a == 11)
+		if (this.a == 36)
 		{
 			this.door.animations.add('open', [1, 2, 3, 4], 10, true);
 			this.door.play('open');
-		}
-		
+		}		
 		else
 		{
 			this.door.play('closed');
@@ -175,18 +205,18 @@ FrogAdventures.level3.prototype = {
 	},
 	
 	gameover: function (player, snake) {
-		//if (snake.currentFrame >= 1)
-		//{
+		if (snake.animations.currentAnim.frame >= 4 && snake.animations.currentAnim.frame <= 12)
+		{
 			this.state.start('gameover');
-		//}
+		}
 	},
 	
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.score == 110)
+		if (this.score == 360)
 		{
-			this.state.start('finished');
+			this.state.start('gamefinished');
 		}
 
 	}

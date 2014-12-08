@@ -60,25 +60,40 @@ FrogAdventures.level1.prototype = {
 		
 		// Some flies to collect
 		this.flies = this.game.add.group();
-		
 		// We will enable physics for any fly that is created in this group
 		this.flies.enableBody = true;
-		
 		// Here we'll create 11 of them evenly spaced apart
 		for (var i = 0; i < 11; i++)
 		{
 			// Create a fly inside of the 'flies' group
 			this.fly = this.flies.create(i * 70, 0, 'fly');
-
 			// Let gravity do its thing
 			this.fly.body.gravity.y = 300;
-			
 			// Standing fly
 			this.fly.animations.add('still');
 			this.fly.animations.play('still', 10, true);
-
 		}
-			
+		this.fly = this.flies.create(420, 400, 'fly');
+		this.fly.body.gravity.y = 300;
+		this.fly.animations.add('still');
+		this.fly.animations.play('still', 10, true);
+		
+		this.fly = this.flies.create(490, 400, 'fly');
+		this.fly.body.gravity.y = 300;
+		this.fly.animations.add('still');
+		this.fly.animations.play('still', 10, true);
+
+		
+		this.fly = this.flies.create(560, 400, 'fly');
+		this.fly.body.gravity.y = 300;
+		this.fly.animations.add('still');
+		this.fly.animations.play('still', 10, true);
+		
+		this.fly = this.flies.create(630, 400, 'fly');
+		this.fly.body.gravity.y = 300;
+		this.fly.animations.add('still');
+		this.fly.animations.play('still', 10, true);
+		
 		// The score
 		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF' });
 			
@@ -139,7 +154,7 @@ FrogAdventures.level1.prototype = {
 		this.scoreText.text = 'Score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.a == 11)
+		if (this.a == 15)
 		{
 			this.door.animations.add('open', [1, 2, 3, 4], 10, true);
 			this.door.play('open');
@@ -155,7 +170,7 @@ FrogAdventures.level1.prototype = {
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.score == 110)
+		if (this.score == 150)
 		{
 			this.state.start('level2');
 		}
