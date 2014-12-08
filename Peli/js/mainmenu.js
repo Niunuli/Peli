@@ -24,10 +24,7 @@ FrogAdventures.mainmenu.prototype = {
 	
 	onClickHelp: function(){
 	
-		jQuery(function ($) {
-			// Load dialog on page load
-			$('#basic-modal-content').modal();
-		});
+		this.state.start('help');
 	},
 	
 	onClickQuit: function() {
