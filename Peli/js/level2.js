@@ -4,13 +4,18 @@ FrogAdventures.level2 = function(){};
 
 FrogAdventures.level2.prototype = {
 	
+	init: function(score) {
+	
+		this.score = score;
+	},
+	
 	create: function() {
 	
-		this.score = 0;
 		this.a = 0;
+		
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
-		
+
 		// Contains ground and ledges, enabling physics to the group
 		this.platforms = this.game.add.group();
 		this.platforms.enableBody = true;
@@ -142,13 +147,12 @@ FrogAdventures.level2.prototype = {
 		this.snake = this.snakes.create(this.world.width - 220, this.game.world.height - 320, 'snake');
 		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
 		this.snake.animations.play('move', 10, true);
-		
+
 		// The score
-		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });
-			
+		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });			
+
 		// Controls
-		this.cursors = this.game.input.keyboard.createCursorKeys();
-		  
+		this.cursors = this.game.input.keyboard.createCursorKeys();  
 	},
   
 	update: function() {
@@ -195,7 +199,7 @@ FrogAdventures.level2.prototype = {
 		
 	},
 	
-	collectfly: function  (player, fly) {
+	collectfly: function  (player, fly, score) {
 	
 		// Removes the fly from the screen
 		fly.kill();
@@ -203,7 +207,7 @@ FrogAdventures.level2.prototype = {
 
 		// Add and update the score
 		this.score += 10;
-		this.scoreText.text = 'Score: ' + this.score;
+		this.scoreText.text = 'score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
 		if (this.a == 36)
@@ -222,16 +226,16 @@ FrogAdventures.level2.prototype = {
 	gameover: function (player, snake) {
 		if (snake.animations.currentAnim.frame >= 4 && snake.animations.currentAnim.frame <= 12)
 		{
-			this.state.start('gameover');
+			this.state.start('gameover', true, false, this.score);
 		}
 	},
 	
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.score == 360)
+		if (this.a == 36)
 		{
-			this.state.start('level3');
+			this.state.start('level3', true, false, this.score);
 		}
 
 	}

@@ -3,11 +3,19 @@ var FrogAdventures = FrogAdventures || {};
 FrogAdventures.level3 = function(){};
 
 FrogAdventures.level3.prototype = {
+
+	init: function(score) {
+	
+		this.score = score;
+	},
 	
 	create: function() {
 	
-		this.score;
 		this.a = 0;
+
+		// Create background
+		this.game.add.sprite(0, 0, 'background');
+
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -88,7 +96,7 @@ FrogAdventures.level3.prototype = {
 			this.fly.animations.play('still', 10, true);
 
 		}
-		for (var i = 0; i < 12; i++)
+		for (var i = 0; i < 10; i++)
 		{
 			// Create a fly inside of the 'flies' group
 			this.fly = this.flies.create(i * 80, 160, 'fly');
@@ -130,8 +138,8 @@ FrogAdventures.level3.prototype = {
 		this.snake.animations.play('move', 10, true);
 
 		// The score
-		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF' });
-			
+		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });			
+
 		// Controls
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 		  
@@ -189,10 +197,10 @@ FrogAdventures.level3.prototype = {
 
 		// Add and update the score
 		this.score += 10;
-		this.scoreText.text = 'Score: ' + this.score;
+		this.scoreText.text = 'score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
-		if (this.a == 36)
+		if (this.a == 34)
 		{
 			this.door.animations.add('open', [1, 2, 3, 4], 10, true);
 			this.door.play('open');
@@ -207,16 +215,16 @@ FrogAdventures.level3.prototype = {
 	gameover: function (player, snake) {
 		if (snake.animations.currentAnim.frame >= 4 && snake.animations.currentAnim.frame <= 12)
 		{
-			this.state.start('gameover');
+			this.state.start('gameover', true, false, this.score);
 		}
 	},
 	
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.score == 360)
+		if (this.a == 34)
 		{
-			this.state.start('gamefinished');
+			this.state.start('gamefinished', true, false, this.score);
 		}
 
 	}

@@ -8,6 +8,7 @@ FrogAdventures.level1.prototype = {
 	
 		this.score = 0;
 		this.a = 0;
+		
 		// Create background
 		this.game.add.sprite(0, 0, 'background');
 		
@@ -95,8 +96,7 @@ FrogAdventures.level1.prototype = {
 		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });
 			
 		// Controls
-		this.cursors = this.game.input.keyboard.createCursorKeys();
-		  
+		this.cursors = this.game.input.keyboard.createCursorKeys();		  
 	},
   
 	update: function() {
@@ -136,8 +136,7 @@ FrogAdventures.level1.prototype = {
 		if (this.cursors.up.isDown && this.player.body.touching.down)
 		{
 			this.player.body.velocity.y = -400;
-		}
-		
+		}		
 	},
 	
 	collectfly: function  (player, fly) {
@@ -148,7 +147,7 @@ FrogAdventures.level1.prototype = {
 
 		// Add and update the score
 		this.score += 10;
-		this.scoreText.text = 'Score: ' + this.score;
+		this.scoreText.text = 'score: ' + this.score;
 		
 		// Checks if the fly is the last one if so, opens the door	
 		if (this.a == 15)
@@ -161,17 +160,15 @@ FrogAdventures.level1.prototype = {
 		{
 			this.door.play('closed');
 		}
-
 	},
 	
 	nextlevel: function (player, door) {
 	
 		// If the door is open, starts a new level
-		if (this.score == 150)
+		if (this.a == 15)
 		{
 			this.state.start('level2', true, false, this.score);
 		}
-
 	}
 	
 };
