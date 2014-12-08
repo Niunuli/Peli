@@ -17,11 +17,11 @@
 #simplemodal-container {
 	border: medium none;
     color: #bbb;
-    height: 520px !important;
-    left: 35px !important;
+    height: auto !important;
+    left: 1% !important;
     padding: 0;
-    top: 40px !important;
-    width: 725px !important;
+    top: 5% !important;
+    width: 38% !important;
 }
 #simplemodal-container .simplemodal-data {padding:8px;}
 #simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
