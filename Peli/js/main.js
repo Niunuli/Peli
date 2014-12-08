@@ -11,6 +11,5 @@ FrogAdventures.game.state.add('level2', FrogAdventures.level2);
 FrogAdventures.game.state.add('level3', FrogAdventures.level3);
 FrogAdventures.game.state.add('gameover', FrogAdventures.gameover);
 FrogAdventures.game.state.add('gamefinished', FrogAdventures.gamefinished);
-FrogAdventures.game.state.add('areyousure', FrogAdventures.areyousure);
 
 FrogAdventures.game.state.start('boot');

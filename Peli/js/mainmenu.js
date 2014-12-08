@@ -14,7 +14,6 @@ FrogAdventures.mainmenu.prototype = {
 		// Show the main menu buttons
 		this.button = this.game.add.button(540, 300, 'start', this.onClickStart, this, 1, 0);
 		this.button = this.game.add.button(540, 380, 'help', this.onClickHelp, this, 1, 0);
-		this.button = this.game.add.button(540, 460, 'quit', this.onClickQuit, this, 1, 0);
 	},
 	
 	onClickStart: function() {
@@ -25,11 +24,5 @@ FrogAdventures.mainmenu.prototype = {
 	onClickHelp: function(){
 	
 		this.state.start('help');
-	},
-	
-	onClickQuit: function() {
-		
-		this.state.start('areyousure');
 	}
-
 };

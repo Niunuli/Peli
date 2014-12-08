@@ -11,7 +11,6 @@ FrogAdventures.preload.prototype = {
 		this.game.load.spritesheet('snake', 'assets/snake.png', 88, 60);
 		this.game.load.spritesheet('frog', 'assets/frogi.png', 38, 40);
 		this.game.load.spritesheet('start', 'assets/start.png', 230, 70);
-		this.game.load.spritesheet('quit', 'assets/quit.png', 230, 70);
 		this.game.load.spritesheet('help', 'assets/help.png', 230, 70);
 		this.game.load.spritesheet('howtoplay', 'assets/howtoplay.png', 700, 500);
 		this.game.load.spritesheet('close', 'assets/close.png', 111, 115);
