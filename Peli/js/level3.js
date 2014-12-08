@@ -6,7 +6,7 @@ FrogAdventures.level3.prototype = {
 	
 	create: function() {
 	
-		this.score = 0;
+		this.score;
 		this.a = 0;
 		// Create background
 		this.game.add.sprite(0, 0, 'background');

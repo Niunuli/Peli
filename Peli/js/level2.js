@@ -76,11 +76,9 @@ FrogAdventures.level2.prototype = {
 		this.player.animations.add('right', [16, 17, 18, 19, 20, 21, 22, 23], 10, true);
 		
 		// Some flies to collect
-		this.flies = this.game.add.group();
-		
+		this.flies = this.game.add.group();		
 		// We will enable physics for any fly that is created in this group
-		this.flies.enableBody = true;
-		
+		this.flies.enableBody = true;		
 		// Here we'll create 11 of them evenly spaced apart
 		for (var i = 0; i < 12; i++)
 		{
@@ -118,9 +116,35 @@ FrogAdventures.level2.prototype = {
 			this.fly.animations.add('still');
 			this.fly.animations.play('still', 10, true);
 		}
-			
+		
+		// Group for snakes
+		this.snakes = this.game.add.group();
+		// Enabling physics for any snake that is created in this group
+		this.snakes.enableBody = true;
+		// Create one snake
+		this.snake = this.snakes.create(this.world.width - 160, this.game.world.height - 420, 'snake');
+		// Animation for the snakes
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+		
+		this.snake = this.snakes.create(this.world.width - 480, this.game.world.height - 420, 'snake');
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+	
+		this.snake = this.snakes.create(this.world.width - 610, this.game.world.height - 120, 'snake');
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+
+		this.snake = this.snakes.create(this.world.width - 630, this.game.world.height - 320, 'snake');
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+
+		this.snake = this.snakes.create(this.world.width - 220, this.game.world.height - 320, 'snake');
+		this.snake.animations.add('move', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+		this.snake.animations.play('move', 10, true);
+		
 		// The score
-		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF' });
+		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });
 			
 		// Controls
 		this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -133,6 +157,9 @@ FrogAdventures.level2.prototype = {
 		this.game.physics.arcade.collide(this.player, this.platforms);
 		this.game.physics.arcade.collide(this.flies, this.platforms);
 		this.game.physics.arcade.collide(this.door, this.platforms);
+
+		// Check to see if the player overlaps with any of the snakes, if he does call the gameover function
+		this.game.physics.arcade.overlap(this.player, this.snakes, this.gameover, null, this);
 
 		// Checks to see if the player overlaps with any of the flies, if he does call the collectfly function
 		this.game.physics.arcade.overlap(this.player, this.flies, this.collectfly, null, this);
@@ -190,6 +217,13 @@ FrogAdventures.level2.prototype = {
 			this.door.play('closed');
 		}
 
+	},
+	
+	gameover: function (player, snake) {
+		if (snake.animations.currentAnim.frame >= 4 && snake.animations.currentAnim.frame <= 12)
+		{
+			this.state.start('gameover');
+		}
 	},
 	
 	nextlevel: function (player, door) {

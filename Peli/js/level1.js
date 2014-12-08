@@ -1,9 +1,6 @@
 var FrogAdventures = FrogAdventures || {};
 
-FrogAdventures.level1 = function(){
-
-
-};
+FrogAdventures.level1 = function(){};
 
 FrogAdventures.level1.prototype = {
 	
@@ -95,7 +92,7 @@ FrogAdventures.level1.prototype = {
 		this.fly.animations.play('still', 10, true);
 		
 		// The score
-		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFFFFF' });
+		this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FFFFFF' });
 			
 		// Controls
 		this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -172,7 +169,7 @@ FrogAdventures.level1.prototype = {
 		// If the door is open, starts a new level
 		if (this.score == 150)
 		{
-			this.state.start('level2');
+			this.state.start('level2', true, false, this.score);
 		}
 
 	}
