@@ -23,6 +23,9 @@ FrogAdventures.mainmenu.prototype = {
 	
 	onClickHelp: function(){
 	
-		this.state.start('help');
+		jQuery(function ($) {
+			// Load dialog on page load
+			$('#basic-modal-content').modal();
+		});
 	}
 };
